@@ -582,7 +582,7 @@ exe "hi! Special"        .s:fmt_none   .s:fg_red    .s:bg_none
 "        SpecialComment  special things inside a comment
 "        Debug           debugging statements
 
-exe "hi! Underlined"     .s:fmt_none   .s:fg_violet .s:bg_none
+exe "hi! Underlined"     .s:fmt_undr   .s:fg_violet .s:bg_none
 "       *Underlined      text that stands out, HTML links
 
 exe "hi! Ignore"         .s:fmt_none   .s:fg_none   .s:bg_none
@@ -618,6 +618,7 @@ exe "hi! Search"         .s:fmt_revr   .s:fg_yellow .s:bg_none
 exe "hi! MoreMsg"        .s:fmt_none   .s:fg_blue   .s:bg_none
 exe "hi! ModeMsg"        .s:fmt_none   .s:fg_blue   .s:bg_none
 exe "hi! LineNr"         .s:fmt_none   .s:fg_base01 .s:bg_base02
+exe "hi! CursorLineNr"   .s:fmt_none   .s:fg_base01 .s:bg_base02
 exe "hi! Question"       .s:fmt_bold   .s:fg_cyan   .s:bg_none
 if ( has("gui_running") || &t_Co > 8 )
     exe "hi! VertSplit"  .s:fmt_none   .s:fg_base00 .s:bg_base00
@@ -1006,8 +1007,8 @@ function! s:SolarizedHiTrail()
     if g:solarized_hitrail==0
         hi! clear solarizedTrailingSpace
     else
-        syn match solarizedTrailingSpace "\s*$"
         exe "hi! solarizedTrailingSpace " .s:fmt_undr .s:fg_red .s:bg_none .s:sp_red
+        match solarizedTrailingSpace "\s\+$"
     endif
 endfunction
 augroup SolarizedHiTrail
@@ -1124,5 +1125,5 @@ autocmd ColorScheme * if g:colors_name != "solarized" | silent! aunmenu Solarize
 " OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 " THE SOFTWARE.
 "
-" vim:foldmethod=marker:foldlevel=0
+" vim:foldmethod=marker:foldlevel=0:expandtab
 "}}}
